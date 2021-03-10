@@ -44,3 +44,7 @@ Everything is bundled in a CocktailQuery() object which the user can load and us
 - get_weights(): This gives the ingredients and weights that were used with cosine similarity to find the nearest cocktail
 - plot_ingredient_scores(category): Shows the model results for each ingredient within a given category (spirits, juices, liqueurs, syrups, misc). 
 - get_recipe(cocktail_name): Returns the recipe for a given cocktail
+
+
+
+(https://raw.githubusercontent.com/altair-viz/altair/master/images/cars.png)
