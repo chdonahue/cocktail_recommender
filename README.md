@@ -33,3 +33,14 @@ Next, I separated all the ingredients into 5 general categories that cocktails t
 For each of these 5 categories, I built a model using Scikit-Learn's TFID Vectorizer to discover which words tended to be more frequent for a given ingredient (code in **create_NLP_models.py**)
 
 
+## DEMO (In TDI_Capstone notebook)
+
+
+### The model finds the most likely ingredients that match a query. Afterwards, cosine similarity is used to determine the closest cocktails to this query. I combine these results with simpler search methods that look for the query in the cocktail description and ingredients. 
+
+
+Everything is bundled in a CocktailQuery() object which the user can load and use to test different queries. There are a few useful methods:
+- plot_cocktail_map(N): Returns the top N cocktails projected onto a 2d map that was derived with [Multidimensional Scaling](https://en.wikipedia.org/wiki/Multidimensional_scaling) on the set of cocktail ingredients. 
+- get_weights(): This gives the ingredients and weights that were used with cosine similarity to find the nearest cocktail
+- plot_ingredient_scores(category): Shows the model results for each ingredient within a given category (spirits, juices, liqueurs, syrups, misc). 
+- get_recipe(cocktail_name): Returns the recipe for a given cocktail
