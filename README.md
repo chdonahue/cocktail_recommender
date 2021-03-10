@@ -47,4 +47,4 @@ Everything is bundled in a CocktailQuery() object which the user can load and us
 
 
 
-(https://raw.githubusercontent.com/altair-viz/altair/master/images/cars.png)
+(https://raw.githubusercontent.com/chdonahue/cocktail_recommender/main/app/test.html)
