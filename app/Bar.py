@@ -12,9 +12,9 @@ from bartender_mappings import ingredient_dict
 
 
 # Unpickle data and load important info:
-with open("cocktails.pickle", "rb") as file:
+with open("cocktail_data/cocktails.pickle", "rb") as file:
     cocktails = pickle.load(file)  
-embedding_dict = dill.load(open('embedding_dict.pkd', 'rb'))
+# embedding_dict = dill.load(open('embedding_dict.pkd', 'rb'))
 categories = list(ingredient_dict.keys())
 categories.remove('garnish') # remove garnish
 categories.remove('fruits') # remove fruits
@@ -91,16 +91,16 @@ class Word2Cocktail:
         self.cocktails.update(filtered_dict)
     
     
-    # helper function that returns for one word:
-    def glove_score(self,word):
-        d = {}
-        ingredient_list = [item for item in ingredient_dict.keys() if ingredient_dict[item]['category'] in ('spirit','liqueur')]
-        for item in ingredient_list:
-            try:
-                d[item] = np.mean([spatial.distance.euclidean(embedding_dict[ele],embedding_dict[word]) for ele in item.split()])
-            except: 
-                d[item] = 100
-        return {k: v for k, v in sorted(d.items(), key=lambda item: item[1])}
+    # # helper function that returns for one word:
+    # def glove_score(self,word):
+    #     d = {}
+    #     ingredient_list = [item for item in ingredient_dict.keys() if ingredient_dict[item]['category'] in ('spirit','liqueur')]
+    #     for item in ingredient_list:
+    #         try:
+    #             d[item] = np.mean([spatial.distance.euclidean(ing_dict[ele],embedding_dict[word]) for ele in item.split()])
+    #         except: 
+    #             d[item] = 100
+    #     return {k: v for k, v in sorted(d.items(), key=lambda item: item[1])}
     
     
     # helper function:
