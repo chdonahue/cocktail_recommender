@@ -1,0 +1,16 @@
+<!doctype html>
+<head>
+<title>AI Bartender</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+{% for cocktail in cocktails %}
+	<h2 style="color:#990000;"> <a href="{{ url_for('get_recipe',variable=cocktail) }}">{{ cocktail }} </a> </h2>
+<!-- 	<p>
+		{% for elem in range(cocktails[cocktail]['ingredients']|length) %}
+				{{ cocktails[cocktail]['ingredients'][elem] }}<br/>
+		{% endfor %}
+	</p> -->
+<!-- 	<p>
+		{{ cocktails[cocktail]['instructions'] }}
+	</p> -->
+{% endfor %}

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>REFACTOR TEST</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="static/refactor_style.css">
+
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
+<script  type="text/javascript">
+$(document).ready(function(){
+
+	var $spirit_test = $( "#spiritList" )
+	var bar_ingredients = []
+
+
+	// Create SPIRITS LIST
+	var spirits = {{ ingredients['spirits']|tojson }};
+	for (var i=0; i<spirits.length; i++ ) {
+		$('<div>' + spirits[i].toUpperCase() + '</div>').attr( 'id', spirits[i] ).attr('origin','#spiritList').appendTo( '#spiritList' ).draggable( {
+		  containment: '#content',
+		  cursor: 'move',
+		  revert: true,
+		  revertDuration: 0
+		} );
+	}
+
+	// Create LIQUEURS LIST
+	var liqueurs = {{ ingredients['liqueurs']|tojson }};
+	for (var i=0; i<liqueurs.length; i++ ) {
+		$('<div>' + liqueurs[i].toUpperCase() + '</div>').attr( 'id', liqueurs[i] ).attr('origin','#liqueurList').appendTo( '#liqueurList' ).draggable( {
+		  containment: '#content',
+		  cursor: 'move',
+		  revert: true,
+	  	  revertDuration: 0
+		} );
+	}
+	
+	var remove_icon = "<a href='link/to/remove/script/when/we/have/js/off' title='Remove from bar' class='ui-icon ui-icon-close'></a>";
+
+
+	$('#barList').droppable({
+	  	accept: "'#spiritList div', '#liqueurList div'",
+	  	activeClass: 'custom-state-active',
+	  	hoverClass: 'hover-state',
+	  	drop: function(event, ui) {
+	  		ui.draggable.css("background-color",ui.draggable.css("background-color"));
+	    	ui.draggable.css("opacity",1);
+	    	ui.draggable.appendTo("#barList");
+	    	ui.draggable.append( remove_icon );
+	    	bar_ingredients.push(ui.draggable.attr("id"));
+	        document.getElementById('submit_button').value = bar_ingredients;
+
+    		// ui.draggable.draggable( 'disable' );
+    		// ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+	  	}
+	  });
+
+	
+	function removeFromBar( $item, $selector ) {
+		var myID = $item.attr("id");
+		// alert(myID); //test to see ID of object
+        $item.find( "a.ui-icon-close" )
+        	.remove();
+        $item.appendTo( $selector ); 
+        const index = bar_ingredients.indexOf(myID);
+        bar_ingredients.splice(index,1);
+        document.getElementById('submit_button').value = bar_ingredients;
+    }
+
+
+	// Resolve the icons behavior with event delegation
+	$( " #spiritList div, #liqueurList div " ).click(function(event){
+		var $target = $( event.target ),
+			$item = $( this ), //I can get actual id name here to put into bar contents
+			$selector = $item.attr('origin');
+		if ($target.is( "a.ui-icon-close" ) ) {
+			removeFromBar($item,$selector);
+		}
+		return false;
+
+	})
+
+
+});
+
+</script>
+
+
+</head>
+
+
+<body>
+	
+
+	<header>
+		<h2>Build Your Bar!</h2>
+	</header>
+
+	<div id="content">
+		<!-- <section id="ingredientSection"> -->
+			<div id="spiritList">
+				<h3>SPIRITS</h3>
+			</div>
+
+			<div id="liqueurList">
+				<h3>LIQUEURS</h3>
+			</div>
+		<!-- </section> -->
+
+		<!-- <section id="barSection"> -->
+			<div id="barList">
+				<h3>MY BAR</h3>
+			</div>
+
+			<form method="post">
+				<button type="submit" value = "" name="submit_button" id='submit_button'> GET COCKTAILS </button>
+			</form>
+		<!-- </section> -->
+
+
+
+	</div>
+</body>
+</html>
+
+

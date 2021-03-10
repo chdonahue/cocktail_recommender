@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>REFACTOR TEST</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="static/refactor_style.css">
+
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
+<script  type="text/javascript">
+$(document).ready(function(){
+	// var $spirit_test = $( "#spiritList" )
+	var bar_ingredients = []
+	// Create SPIRITS LIST
+	var spirits = {{ ingredients['spirits']|tojson }};
+	for (var i=0; i<spirits.length; i++ ) {
+		$('<li>' + spirits[i].toUpperCase() + '</li>').attr( 'id', spirits[i] ).attr('origin','#spiritList').attr('state','#spiritList').appendTo( '#spiritList' ).draggable( {
+		  containment: '#content',
+		  cursor: 'move',
+		  revert: true,
+		  revertDuration: 0
+		} );
+	}
+
+	// Create LIQUEURS LIST
+	var liqueurs = {{ ingredients['liqueurs']|tojson }};
+	for (var i=0; i<liqueurs.length; i++ ) {
+		$('<li>' + liqueurs[i].toUpperCase() + '</li>').attr( 'id', liqueurs[i] ).attr('origin','#liqueurList').attr('state','#liqueurList').appendTo( '#liqueurList' ).draggable( {
+		  containment: '#content',
+		  cursor: 'move',
+		  revert: true,
+	  	  revertDuration: 0
+		} );
+	}
+
+	// Create JUICE LIST
+	var juice = {{ ingredients['juice']|tojson }};
+	for (var i=0; i<juice.length; i++ ) {
+		$('<li>' + juice[i].toUpperCase() + '</li>').attr( 'id', juice[i] ).attr('origin','#juiceList').attr('state','#juiceList').appendTo( '#juiceList' ).draggable( {
+		  containment: '#content',
+		  cursor: 'move',
+		  revert: true,
+	  	  revertDuration: 0
+		} );
+	}
+
+	// Create SYRUP LIST
+	var syrup = {{ ingredients['syrup']|tojson }};
+	for (var i=0; i<syrup.length; i++ ) {
+		$('<li>' + syrup[i].toUpperCase() + '</li>').attr( 'id', syrup[i] ).attr('origin','#syrupList').attr('state','#syrupList').appendTo( '#syrupList' ).draggable( {
+		  containment: '#content',
+		  cursor: 'move',
+		  revert: true,
+	  	  revertDuration: 0
+		} );
+	}
+
+	// Create WINE LIST
+	var wine = {{ ingredients['wine']|tojson }};
+	for (var i=0; i<wine.length; i++ ) {
+		$('<li>' + wine[i].toUpperCase() + '</li>').attr( 'id', wine[i] ).attr('origin','#wineList').attr('state','#wineList').appendTo( '#wineList' ).draggable( {
+		  containment: '#content',
+		  cursor: 'move',
+		  revert: true,
+	  	  revertDuration: 0
+		} );
+	}
+
+	// Create SPICES LIST
+	var spices = {{ ingredients['spices']|tojson }};
+	for (var i=0; i<spices.length; i++ ) {
+		$('<li>' + spices[i].toUpperCase() + '</li>').attr( 'id', spices[i] ).attr('origin','#spiceList').attr('state','#spiceList').appendTo( '#spiceList' ).draggable( {
+		  containment: '#content',
+		  cursor: 'move',
+		  revert: true,
+	  	  revertDuration: 0
+		} );
+	}
+
+	var remove_icon = "<a href='link/to/remove/script/when/we/have/js/off' title='Remove from bar' class='ui-icon ui-icon-close'></a>";
+
+
+	$('#barList').droppable({
+	  	accept: "'#spiritList li', '#liqueurList li', '#juiceList li', '#syrupList li', #wineList li', '#spiceList li'",
+	  	activeClass: 'custom-state-active',
+	  	hoverClass: 'hover-state',
+	  	drop: function(event, ui) {
+	  		ui.draggable.css("background-color",ui.draggable.css("background-color"));
+	    	ui.draggable.css("opacity",1);
+	    	ui.draggable.appendTo("#barList");
+	    	ui.draggable.append( remove_icon );
+	    	bar_ingredients.push(ui.draggable.attr("id"));
+	        document.getElementById('submit_button').value = bar_ingredients;
+
+    		// ui.draggable.draggable( 'disable' );
+    		// ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+	  	}
+	  });
+
+	function moveToBar( $item ) {
+		$item.css("background-color",$item.css("background-color"));
+    	$item.css("opacity",1);
+		$item.appendTo("#barList");
+		$item.attr('state','#barList')
+    	$item.append( remove_icon );
+		bar_ingredients.push($item.attr("id"));
+        document.getElementById('submit_button').value = bar_ingredients;
+    }
+    $()
+	
+	function removeFromBar( $item, $selector ) {
+		var myID = $item.attr("id");
+		// alert(myID); //test to see ID of object
+        $item.find( "a.ui-icon-close" )
+        	.remove();
+        $item.appendTo( $selector ); 
+        const index = bar_ingredients.indexOf(myID);
+        bar_ingredients.splice(index,1);
+		$item.attr('state', $selector );
+
+        document.getElementById('submit_button').value = bar_ingredients;
+    }
+
+
+	// Resolve the icons behavior with event delegation
+	$( " #spiritList li, #liqueurList li, #juiceList li, #syrupList li, #wineList li, #spiceList li " ).click(function(){
+		var $target = $( event.target ),
+			$item = $( this ), //I can get actual id name here to put into bar contents
+			$selector = $item.attr('origin');
+		if ($target.is( "a.ui-icon-close" ) ) {
+			removeFromBar($item,$selector);
+		} else  {
+			if ($item.attr('state') != '#barList'){
+				moveToBar( $item );
+			}
+		}
+		return false;
+
+	})
+
+
+});
+
+</script>
+
+
+</head>
+
+
+<body>
+	
+
+	<header>
+		<h2>Build Your Bar!</h2>
+	</header>
+
+	<div id="content">
+			<div id="spiritList">
+				<h3>SPIRITS</h3>
+			</div>
+
+			<div id="liqueurList">
+				<h3>LIQUEURS</h3>
+			</div>
+
+			<div id="juiceList">
+				<h3>JUICE</h3>
+			</div>
+
+			<div id="syrupList">
+				<h3>SYRUP</h3>
+			</div>
+
+			<div id="wineList">
+				<h3>WINE</h3>
+			</div>
+
+			<div id="spiceList">
+				<h3>SPICES AND HERBS</h3>
+			</div>
+
+			<div id="barList">
+				<form method="post">
+					<button type="submit" value = "" name="submit_button" id='submit_button'> GET COCKTAILS </button>
+				</form>
+				<h3>MY BAR</h3>
+			</div>
+
+			
+
+
+	</div>
+</body>
+</html>
+
+

@@ -1,0 +1,117 @@
+
+
+body {
+  margin: 30px;
+  font-family: "Georgia", serif;
+  background-color: #e5e5cc;
+}
+
+header {
+	text-align: center;
+	font-size: 30px;
+}
+
+h3 {
+	column-span: all;
+	font-size: 24px;
+}
+
+
+#spiritList, #barList, #liqueurList, #juiceList, #syrupList, #wineList, #spiceList{
+	float: left;
+	position: relative;
+	text-align: center;
+	margin: 20px auto 0 auto;
+	background: #ddf;
+	float: left;
+	width: 480px;
+	height: 680px;
+	padding: 10px;
+	border: 2px solid #333;
+	margin-right: 30px; 
+    list-style-type: none;
+  	column-count: 2;
+  	column-gap: 20px;
+  	font-size: 14px;
+}
+
+/*#spiritList{
+	width: 500px;
+	height: 300px;
+}
+
+#barList{
+	width: 400px;
+	height: 600px;
+	bottom: 1200px;
+	left: 1000px;
+}
+
+#syrupList{
+	width: 500px;
+	height: 300px;
+}
+
+
+#juiceList{
+	width: 500px;
+	height: 300px;
+	bottom: 400px;
+}
+
+#wineList{
+	width: 500px;
+	height: 200px;
+	bottom: 400px;
+}
+
+#spiceList{
+	width: 500px;
+	height: 300px;
+}
+
+
+#liqueurList{
+	width: 500px;
+	height: 700px;
+}*/
+
+#spiritList li, #liqueurList li, #juiceList li, #syrupList li, #wineList li, #spiceList li{
+	margin: 4px;
+}
+
+#submit_button {
+	background-color: red;
+	width: 200px;
+	height: 80px;
+}
+
+#query {
+	width: 300px;
+	height: 80px;
+	font-size: 24px;
+}
+/*
+#spiritList div {
+	background: yellow;
+}
+
+#liqueurList div {
+	background: green;
+}*/
+
+#barList.custom-state-active {  
+  border-color: red;
+  border-width: medium;
+}
+
+#barList.hover-state {  
+  background-color: #4db387;
+}
+
+#spiritList li:hover, #liqueurList li:hover, #juiceList li:hover, 
+#wineList li:hover, #syrupList li:hover, #spiceList li:hover
+{
+	color: red;
+	cursor: pointer;
+}
