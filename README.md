@@ -8,8 +8,12 @@ One thing I miss is being able to interact with a bartender and describe in vagu
 
 
 
-<h1><center>GETTING THE DATA </center></h1>
+## GETTING THE DATA
 The most important thing for me was to find a good source of creative cocktail recipes (no Cosmos messing up my dataset!). 
 I found a great site upneat.rocks that had exactly what I was looking for. All cocktails from 3 famous craft cocktail books, including Death & Co! 
 
 I used Beautiful Soup (code in <b>upneat_scraper.py</b>) to extract all the contents
+
+
+## EXTRACT INGREDIENTS
+Ingredients had to be abstracted into categories for this to work. As seen in the example below, brand names are often found in the recipes (<em>i.e. Siembra Azul Blanco Tequila</em>) and I want this to simply be <em>Tequila</em>. This was somewhat arbitrary, but I managed to extract around 160 unique ingredients from the cocktail database. 
