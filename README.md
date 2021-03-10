@@ -15,5 +15,21 @@ I found a great site upneat.rocks that had exactly what I was looking for. All c
 I used Beautiful Soup (code in <b>upneat_scraper.py</b>) to extract all the contents
 
 
-## EXTRACT INGREDIENTS
+## EXTRACTING INGREDIENTS
 Ingredients had to be abstracted into categories for this to work. As seen in the example below, brand names are often found in the recipes (<em>i.e. Siembra Azul Blanco Tequila</em>) and I want this to simply be <em>Tequila</em>. This was somewhat arbitrary, but I managed to extract around 160 unique ingredients from the cocktail database. 
+
+
+## BUILDING A TRAINING SET FROM WIKIPEDIA AND REDDIT DATA
+
+I selected the most common ingredients and scraped Wikipedia and subreddits (when they existed) corresponding to these ingredients (code in <b>create_wiki_diciontaries.py</b> and <b>create_reddit_dictionaries.py</b>) 
+
+Next, I separated all the ingredients into 5 general categories that cocktails tend to have:
+1. Spirits (Rum, Tequila, etc.)
+2. Juices (Lemon, Lime, etc.
+3. Liqueurs (Triple Sec, Kahlua, etc.)
+4. Syrups (Simple syrup, grenadine, etc.)
+5. Misc (Coffee, cream, etc.)
+
+For each of these 5 categories, I built a model using Scikit-Learn's TFID Vectorizer to discover which words tended to be more frequent for a given ingredient (code in **create_NLP_models.py**)
+
+
