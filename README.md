@@ -31,7 +31,7 @@ For this project, I decided to build a model that uses NLP to rank cocktails tha
 ## EXTRACTING INGREDIENTS
 Ingredients had to be abstracted into categories for this to work. As seen in the example below, brand names are often found in the recipes (<em>i.e. Siembra Azul Blanco Tequila</em>) and I want this to simply be <em>Tequila</em>. This was somewhat arbitrary, but I managed to extract around 160 unique ingredients from the cocktail database. 
 
-GILDA COCKTAIL
+**GILDA COCKTAIL**
 - 2 ounces Siembra Azul Blanco Tequila
 - .5 ounce Pineapple Juice
 - .5 ounce Lime Juice
