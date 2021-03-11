@@ -73,3 +73,5 @@ Shake all the ingredients with ice, then strain into a coupe. No garnish.
 
 PHIL WARD, 2007 This cocktail was my first epiphany about using mezcal in a mixed drink. Doing so is common now, but nobody was mixing with it back then.—PW
 
+### There is a method to get a score for each of the ingredients that were derived from the model:
+<img src="/app/img/fig2.png" />
