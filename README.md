@@ -7,14 +7,6 @@ I love craft cocktails, but during COVID I wasn't able to go out and enjoy them.
 One thing I miss is being able to interact with a bartender and describe in vague terms what kind of cocktail I want. For example I can ask, **"Do you have anything kinda smoky but spicy?"** A good bartender can come up with a good cocktail to match. I wanted to train a model to do this for me. 
 
 
-
-## GETTING THE DATA
-The most important thing for me was to find a good source of creative cocktail recipes (no Cosmos messing up my dataset!). 
-I found a great site upneat.rocks that had exactly what I was looking for. All cocktails from 3 famous craft cocktail books, including Death & Co! 
-
-I used Beautiful Soup (code in <b>upneat_scraper.py</b>) to extract all the contents
-
-
 ## BUILDING A MODEL TO MAP QUERIES TO COCKTAILS
 For this project, I decided to build a model that uses NLP to rank cocktails that match a user's query. 
 
@@ -25,6 +17,12 @@ For this project, I decided to build a model that uses NLP to rank cocktails tha
 3. Build the training set from Wikipedia and subreddit data
 4. Train the model and visualize results
     
+
+## GETTING THE DATA
+The most important thing for me was to find a good source of creative cocktail recipes (no Cosmos messing up my dataset!). 
+I found a great site upneat.rocks that had exactly what I was looking for. All cocktails from 3 famous craft cocktail books, including Death & Co! 
+
+I used Beautiful Soup (code in <b>upneat_scraper.py</b>) to extract all the contents
 
 
 
