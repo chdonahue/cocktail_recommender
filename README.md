@@ -15,6 +15,19 @@ I found a great site upneat.rocks that had exactly what I was looking for. All c
 I used Beautiful Soup (code in <b>upneat_scraper.py</b>) to extract all the contents
 
 
+## BUILDING A MODEL TO MAP QUERIES TO COCKTAILS
+For this project, I decided to build a model that uses NLP to rank cocktails that match a user's query. 
+
+**STEPS:**
+
+1. Get the data
+2. Extract ingredient categories for the cocktails
+3. Build the training set from Wikipedia and subreddit data
+4. Train the model and visualize results
+    
+
+
+
 ## EXTRACTING INGREDIENTS
 Ingredients had to be abstracted into categories for this to work. As seen in the example below, brand names are often found in the recipes (<em>i.e. Siembra Azul Blanco Tequila</em>) and I want this to simply be <em>Tequila</em>. This was somewhat arbitrary, but I managed to extract around 160 unique ingredients from the cocktail database. 
 
