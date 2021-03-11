@@ -75,3 +75,4 @@ PHIL WARD, 2007 This cocktail was my first epiphany about using mezcal in a mixe
 
 ### There is a method to get a score for each of the ingredients that were derived from the model:
 <img src="/app/img/fig2.png" />
+<img src="/app/img/fig3.png" />
