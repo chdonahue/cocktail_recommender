@@ -59,3 +59,13 @@ For each of these 5 categories, I built a model using Scikit-Learn's TFID Vector
 ### The model finds the most likely ingredients that match a query. Afterwards, cosine similarity is used to determine the closest cocktails to this query. I combine these results with simpler search methods that look for the query in the cocktail description and ingredients. 
 
 <img src="/app/img/fig1.png" />
+
+
+**JOVENCOURT DAIQUIRI**
+- 2 ounces Barbancourt White Rum
+- .25 ounce Del Maguey Vida Mezcal
+- .75 ounce Lime Juice
+- .75 ounce Simple Syrup
+Shake all the ingredients with ice, then strain into a coupe. No garnish.
+PHIL WARD, 2007 This cocktail was my first epiphany about using mezcal in a mixed drink. Doing so is common now, but nobody was mixing with it back then.—PW
+
