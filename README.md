@@ -56,7 +56,7 @@ For each of these 5 categories, I built a model using Scikit-Learn's TFID Vector
 ## DEMO (In TDI_Capstone notebook)
 
 
-### The model finds the most likely ingredients that match a query. Afterwards, cosine similarity is used to determine the closest cocktails to this query. I combine these results with simpler search methods that look for the query in the cocktail description and ingredients. 
+### The model finds the most likely ingredients that match a query. Afterwards, cosine similarity is used to determine the closest cocktails to this query. I combine these results with simpler search methods that look for the query in the cocktail description and ingredients. The end result is the top N cocktails projected onto a 2d map that was derived with [Multidimensional Scaling](https://en.wikipedia.org/wiki/Multidimensional_scaling) on the set of cocktail ingredients
 
 *Example Query: "smoky daiquiri"*
 
