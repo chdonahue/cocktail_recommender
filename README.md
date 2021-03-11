@@ -38,4 +38,4 @@ For each of these 5 categories, I built a model using Scikit-Learn's TFID Vector
 
 ### The model finds the most likely ingredients that match a query. Afterwards, cosine similarity is used to determine the closest cocktails to this query. I combine these results with simpler search methods that look for the query in the cocktail description and ingredients. 
 
-<img src="/app/test.html" height="100" />
+<img src="/app/img/fig1.jpg" height="100" />
