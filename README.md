@@ -66,6 +66,8 @@ For each of these 5 categories, I built a model using Scikit-Learn's TFID Vector
 - .25 ounce Del Maguey Vida Mezcal
 - .75 ounce Lime Juice
 - .75 ounce Simple Syrup
+- 
 Shake all the ingredients with ice, then strain into a coupe. No garnish.
+
 PHIL WARD, 2007 This cocktail was my first epiphany about using mezcal in a mixed drink. Doing so is common now, but nobody was mixing with it back then.—PW
 
