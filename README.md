@@ -1,6 +1,6 @@
-# cocktail_recommender
-
 # COCKTAIL RECOMMENDER PROJECT
+
+<img src="/app/img/barman-behind-bar.jpg" />
 
 I love craft cocktails, but during COVID I wasn't able to go out and enjoy them. During the lockdown, I decided to learn how to make my own cocktails. I bought a great cocktail book [DEATH & CO](https://www.amazon.com/Death-Co-Modern-Classic-Cocktails/dp/1607745259) and built up my home bar. 
 
