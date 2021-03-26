@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>AI Bartender</title>
-    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/refactor_style.css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
@@ -15,32 +15,19 @@
 
 <div class=page>
 
-  <div class="topnav">
-    <a class="active" href="#home">Home</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-  </div>
-
-
-  <p style="font-size:25px; font-weight:900;margin-bottom: 10px;"> Welcome to the AI craft cocktail bartender. </p> 
-  <p style="font-size:25px; font-weight:900;margin-bottom: 60px;"> Please enter flavors or ingredients that you want in your cocktail, and I will give some recommendations  </p>
   <h4>
     <form method='post'>
-      <p style="margin-bottom: 10px;">
+      <p>
         WHAT FLAVORS DO YOU ENJOY IN YOUR COCKTAIL? <br />
-        <div style="margin-bottom: 40px;" class="button-align">
-            <input type='text' name='query' id='query' autocomplete="off"/> <br />
-            <input type='submit' id='submit' value='Submit'/>
-        </div>
+        <input type='text' name='query' id='query'/> <br />
+      </p>
+      <p>
+        <input type='submit' value='Submit' />
       </p>
     </form>
   </h4>
 
-{% if query %}
-  <p style="margin-bottom: 5px;"> <strong>Query: {{query}} </strong></p> 
-{% endif %}
-
-
+<p>Query: {{query}}</p>
 
 <div id="altair-timeseries"></div>
 </div>
@@ -60,11 +47,8 @@ vegaEmbed("#" + div, url, opt, function (error, result) {
   }
 //Parse your Json variable here
 parse({{ chart_json | safe }}, "altair-timeseries")
+// parse({{ spirit | safe }}, "altair-timeseries")
 </script>
 
-<!-- <p> {{cocktails}}</p> -->
 
-{% for cocktail in cocktails %}
-  <h2 style="color:#990000;"> <a href="{{ url_for('get_recipe',variable=cocktail) }}">{{ cocktail }} </a> </h2>
-
-{% endfor %}
+<p>{{spirit}}</p>

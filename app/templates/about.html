@@ -1,0 +1,62 @@
+<!doctype html>
+<title>AI Bartender</title>
+
+<head>
+    <meta charset="utf-8">
+    <title>AI Bartender</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+
+
+<div class=page>
+  <div class="topnav">
+    <a  href="/">Home</a>
+    <a class="active" href="/about">About</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <p align='center'; style="font-size:40px; font-weight:900;" > HOW DOES IT WORK? </p>
+  <center><img src="{{url_for('static', filename='barman-behind-bar.jpg')}}" width="768" height="432"></center>
+  <h4> INTRODUCTION </h4>
+  <p>I love craft cocktails, but during COVID I wasn't able to go out and enjoy them. While stuck at home, I decided to learn how to make my own cocktails. I bought a great cocktail book <a href="https://www.amazon.com/Death-Co-Modern-Classic-Cocktails/dp/1607745259"> DEATH & CO</a> and built up my home bar. One thing I miss is being able to interact with a bartender and describe in vague terms what kind of cocktail I want. For example I can ask, <b>"Can you make something that is smoky and spicy?"</b> A good bartender can come up with a good cocktail to match (i.e. <a href=/Stolen%20Huffy> The Stolen Huffy</a>). I wanted to learn how to use machine learning to do this for me.  </p>
+
+
+  <h4> GETTING THE DATA </h4>
+  <p> The first step is to find a good source of creative cocktail recipes. I didn't want any cosmos in this dataset!
+    I found a great site <a href="http://www.upneat.rocks/"> upneat.rocks</a> that had exactly what I was looking for. A collection of 1120 cocktails from 3 famous craft cocktails books, including Death & Co!. I used Beautiful Soup <a href="https://github.com/chdonahue/cocktail_recommender/blob/main/app/upneat_scraper.py">(upneat_scraper.py) </a> to extract all contents. </p>
+
+
+  <h4> EXTRACTING INGREDIENTS </h4>
+  <p> Ingredients had to be abstracted into categories for this to work properly. As seen in the example below, brand names are often found in recipes (<em> i.e. Siembra Azul Blanco Tequila</em>) and I wanted this to simply be <em>Tequila</em>. Some of these categorizations were somewhat arbitrary, but following my own judgement I managed to map all ingredients to around 160 unique categories. 
+  </p>
+
+  <div class="example-cocktail">
+    <p style="font-weight:900; margin-bottom:10px;"><a href=/Gilda%20Cocktail>GILDA COCKTAIL</a> </p>
+      <p> 2 ounces Siembra Azul Blanco Tequila <br>
+        .5 ounce Pineapple Juice<br>
+        .5 ounce Lime Juice<br>
+        .5 ounce Cinnamon Bark Syrup<br>
+        Wheel of Lime (Garnish)<br>
+    </p>
+  </div>
+
+
+  <h4> TRAIN A MODEL ON REDDIT AND WIKIPEDIA ENTRIES </h4>
+  <p> I selected the most commonly found ingredients and scraped all Wikipedia and subreddits (if they existed) that were dedicated to these ingredients <a href="https://github.com/chdonahue/cocktail_recommender/">(code found here).</a> </p>
+  <p> Next, I created 5 general categories that cocktails tend to contain: <br>
+    1. Spirits (i.e. Rum, Tequila, Gin)<br>
+    2. Juices (i.e. Lemon, Lime)<br>
+    3. Liquerus (i.e. Triple Sec, Kahlua)<br>
+    4. Syrups (i.e. Simple syrup, grenadine)<br>
+    5. Misc (i.e. Coffee, cream)<br>
+  </p>
+
+<p style="margin-bottom:20px;"> For each of these 5 categories, I trained a model using scikit-learn's TFID Vectorizer to find words that tended to be more frequent for a given ingredient. For example, I trained a model on all the spirits and when given a new query <em> "smoky daiquiri"</em>, it returns the following weights: </p>
+<img src="{{url_for('static', filename='spirit_ex.png')}}" width="510" height="400">
+
+<p style="margin-top:20px;"> One of the top hits for this query is the <a href=/Jovencourt%20Daiquiri>Jovencourt Daiquri</a> which is a mezcal-based daiquri!</p>
+
+
+</div>

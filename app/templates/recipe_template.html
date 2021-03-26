@@ -1,7 +1,9 @@
 <!doctype html>
 <head>
-<title>AI Bartender</title>
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<meta charset="utf-8">
+    <title>AI Bartender</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <h1 style="color:#990000;"> {{ drink['cocktail_name'] }} </h1>
 <p>
@@ -11,4 +13,8 @@
 </p>
 <p>
 	{{ drink['instructions'] }}
+</p>
+
+<p>
+	{{ drink['comments'] }}
 </p>
