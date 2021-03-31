@@ -7,12 +7,10 @@ from sklearn.pipeline import Pipeline
 from spacy.lang.en.stop_words import STOP_WORDS
 from sklearn.linear_model import LogisticRegression
 from sklearn import base
-
-
+nlp = spacy.load("en_core_web_sm")
 
 
 def tokenize_lemma(text):
-    nlp = spacy.load("en_core_web_sm")
     return [w.lemma_.lower() for w in nlp(text)]
 
 def train_label(d):

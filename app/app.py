@@ -1,15 +1,13 @@
-from flask import Flask, render_template, request, redirect, jsonify
+from flask import Flask, render_template, request, redirect, jsonify, session
+from flask_session.__init__ import Session
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from CocktailMap import CocktailMap
-import time
 app = Flask(__name__)
+SESSION_TYPE = 'filesystem'
+app.config.from_object(__name__)
+Session(app)
 
-
-class DataStore():
-	a = None
-
-data = DataStore()
 
 
 @app.route('/',methods=['GET','POST'])
@@ -18,9 +16,8 @@ def index():
 		query = request.form['query']
 		C = CocktailMap(query)
 		f = C.plot_cocktail_map(20).to_json()
-		cocktails = C.cocktails
-		data.a = cocktails
-		return render_template('index.html',chart_json=f,query=query,cocktails=cocktails)
+		session['data'] = C.cocktails
+		return render_template('index.html',chart_json=f,query=query,cocktails=C.cocktails)
 	return render_template('index.html')
 
 
@@ -34,13 +31,21 @@ def contact():
 
 @app.route('/<variable>')
 def get_recipe(variable):
-	cocktails = data.a
-	if data.a is None: # kluge to deal with race problem
-		time.sleep(1)
-
+	cocktails = session['data']
 	return render_template("recipe_template.html",drink = cocktails[variable])
 
+# Add example pages for about page: 
+@app.route('/Stolen%20Huffy')
+def show_huffy():
+	return render_template("huffy.html")
 
+@app.route('/Gilda%20Cocktail')
+def show_gilda():
+	return render_template("gilda.html")
+
+@app.route('/Jovencourt%20Daiquiri')
+def show_jovencourt():
+	return render_template("jovencourt.html")
 
 
 if __name__ == '__main__':

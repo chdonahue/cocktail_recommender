@@ -22,8 +22,9 @@
   </div>
 
 
-  <p style="font-size:25px; font-weight:900;margin-bottom: 10px;"> Welcome to the AI craft cocktail bartender. </p> 
-  <p style="font-size:25px; font-weight:900;margin-bottom: 60px;"> Please enter flavors or ingredients that you want in your cocktail, and I will give some recommendations  </p>
+  <p style="font-size:20px; font-weight:500;margin-bottom: 60px;"> Welcome to the AI craft cocktail bartender. I wanted to recreate the experience of going to a bar where a good bartender can recommend a cocktail based on loose descriptions. For example <b> "I like smoky daiquiris"</b> might lead a bartender to recommend a mezcal-based daiquiri. Give it a try!</p> 
+
+
   <h4>
     <form method='post'>
       <p style="margin-bottom: 10px;">
@@ -62,7 +63,6 @@ vegaEmbed("#" + div, url, opt, function (error, result) {
 parse({{ chart_json | safe }}, "altair-timeseries")
 </script>
 
-<!-- <p> {{cocktails}}</p> -->
 
 {% for cocktail in cocktails %}
   <h2 style="color:#990000;"> <a href="{{ url_for('get_recipe',variable=cocktail) }}">{{ cocktail }} </a> </h2>
